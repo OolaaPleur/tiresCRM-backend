@@ -10,12 +10,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.oolaa.TiresCRM.tire.task.Task;
@@ -41,7 +36,7 @@ public class TireController {
 	}
 	
     @GetMapping("/tires/{date}")
-    public List<Tire> createTire(@PathVariable String date) {
+    public List<Tire> returnTiresByCreationDate(@PathVariable String date) {
         // Parse the date string to LocalDate
         LocalDate localDate = LocalDate.parse(date);
 
@@ -50,11 +45,10 @@ public class TireController {
         OffsetDateTime endDateTime = localDate.plusDays(1).atStartOfDay().toInstant(ZoneOffset.UTC).atOffset(ZoneOffset.UTC);
 
         // Fetch tires between startDateTime and endDateTime
-        System.out.print(tireRepository.findByTireAddedBetween(startDateTime, endDateTime).size());
         return tireRepository.findByTireAddedBetween(startDateTime, endDateTime);
     }
 	
-	@PostMapping("/tires/{id}")
+	@PutMapping("/tires/{id}")
 	public ResponseEntity<Tire> updateTire (@PathVariable Long id, @RequestBody Tire newTireData) {
 		Tire existingTire = tireRepository.findById(id).orElse(null);
 		

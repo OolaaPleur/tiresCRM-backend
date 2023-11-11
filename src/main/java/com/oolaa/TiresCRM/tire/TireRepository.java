@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TireRepository extends JpaRepository<Tire, Long>{
-	//List<Todo> findByUsername(Boolean isTireReady);
 	Optional<Tire> findByTireId(String tireId);
     List<Tire> findByTireAddedBetween(OffsetDateTime start, OffsetDateTime end);
 }
