@@ -16,7 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.oolaa.TiresCRM.tire.task.Task;
 import com.oolaa.TiresCRM.tire.task.TaskType;
 
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "https://sweet-pavlova-0b9f62.netlify.app"})
 @RestController
 public class TireController {
 
